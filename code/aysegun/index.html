@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name — Engineer & Developer</title>
+<meta name="description" content="Mechanical engineer who builds software. Apps, data tools, and B2B products.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a08;
+    --surface: #111110;
+    --surface2: #1a1a18;
+    --border: rgba(255,255,255,0.08);
+    --border-med: rgba(255,255,255,0.12);
+    --text: #f0ede6;
+    --muted: #7a7870;
+    --accent: #c8f55a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Syne', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0; pointer-events: none; z-index: 100;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.4;
+  }
+
+  .container { max-width: 980px; margin: 0 auto; padding: 0 2rem; }
+
+  /* NAV */
+  nav {
+    padding: 2rem 0;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    animation: fadeDown 0.6s ease both;
+  }
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px; color: var(--accent);
+    letter-spacing: 0.05em; text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 13px; color: var(--muted);
+    text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero { padding: 6rem 0 4rem; animation: fadeUp 0.8s 0.1s ease both; }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px; color: var(--accent);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 24px; height: 1px; background: var(--accent);
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 7.5vw, 5.5rem);
+    line-height: 1.02; letter-spacing: -0.02em; font-weight: 400;
+    margin-bottom: 2.5rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--muted); }
+  .hero-sub {
+    font-size: 16px; color: var(--muted);
+    line-height: 1.75; max-width: 520px; font-weight: 400;
+  }
+  .hero-sub strong { color: rgba(240,237,230,0.75); font-weight: 600; }
+
+  /* STAT ROW */
+  .hero-stats {
+    display: flex; gap: 0;
+    margin-top: 4rem;
+    border-top: 1px solid var(--border);
+    border-left: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .stat {
+    flex: 1; min-width: 120px;
+    padding: 1.75rem 2rem;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.2rem; color: var(--text);
+    display: block; line-height: 1; margin-bottom: 5px;
+  }
+  .stat-label {
+    font-size: 11px; color: var(--muted);
+    letter-spacing: 0.1em; font-family: 'DM Mono', monospace;
+    text-transform: uppercase;
+  }
+
+  /* TICKER */
+  .ticker-wrap {
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 0.85rem 0;
+    animation: fadeUp 0.8s 0.25s ease both;
+    margin-top: -1px;
+  }
+  .ticker {
+    display: flex; gap: 3rem;
+    animation: ticker 28s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker span {
+    font-family: 'DM Mono', monospace; font-size: 12px;
+    color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .ticker span.hi { color: var(--accent); }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    color: var(--muted); letter-spacing: 0.18em; text-transform: uppercase;
+    margin-bottom: 2rem; padding-top: 5rem;
+  }
+
+  /* APPS GRID */
+  .apps-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 1.5px; background: var(--border);
+  }
+  @media (max-width: 600px) { .apps-grid { grid-template-columns: 1fr; } }
+
+  .app-card {
+    background: var(--bg); padding: 2.5rem;
+    position: relative; overflow: hidden;
+    transition: background 0.3s;
+    text-decoration: none; color: inherit; display: block;
+  }
+  .app-card:hover { background: var(--surface2); }
+  .app-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--card-accent, var(--accent));
+    transition: width 0.4s ease;
+  }
+  .app-card:hover::after { width: 100%; }
+  .app-number {
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    color: var(--muted); margin-bottom: 2rem; letter-spacing: 0.1em;
+  }
+  .app-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; margin-bottom: 1.5rem;
+  }
+  .app-name {
+    font-size: 1.35rem; font-weight: 700;
+    letter-spacing: -0.02em; margin-bottom: 0.5rem;
+  }
+  .app-tagline {
+    font-size: 14px; color: var(--muted);
+    margin-bottom: 1.5rem; line-height: 1.6; font-weight: 400;
+  }
+  .app-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+  .badge {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.08em; padding: 4px 10px;
+    border-radius: 100px; border: 1px solid var(--border);
+    color: var(--muted); text-transform: uppercase;
+  }
+  .badge.platform {
+    border-color: var(--card-accent, var(--accent));
+    color: var(--card-accent, var(--accent));
+  }
+  .app-arrow {
+    position: absolute; top: 2.5rem; right: 2.5rem;
+    font-size: 18px; color: var(--muted);
+    opacity: 0; transition: opacity 0.2s, transform 0.2s;
+  }
+  .app-card:hover .app-arrow { opacity: 1; transform: translate(2px, -2px); }
+
+  .card-nextstop { --card-accent: #60b8ff; }
+  .card-nextstop .app-icon { background: rgba(96,184,255,0.1); }
+  .card-kilowise { --card-accent: #c8f55a; }
+  .card-kilowise .app-icon { background: rgba(200,245,90,0.1); }
+  .card-nxy { --card-accent: #bf8aff; }
+  .card-nxy .app-icon { background: rgba(191,138,255,0.1); }
+  .card-stellra { --card-accent: #f5a45a; }
+  .card-stellra .app-icon { background: rgba(245,164,90,0.1); }
+
+  /* UPCOMING */
+  .upcoming-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 1.5px; background: var(--border);
+    margin-top: 2rem;
+  }
+  @media (max-width: 600px) { .upcoming-grid { grid-template-columns: 1fr; } }
+
+  .upcoming-card {
+    background: var(--bg); padding: 2.5rem;
+    position: relative; overflow: hidden;
+  }
+  .upcoming-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      -45deg, transparent, transparent 6px,
+      rgba(255,255,255,0.012) 6px, rgba(255,255,255,0.012) 7px
+    );
+    pointer-events: none;
+  }
+  .upcoming-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); border: 1px solid rgba(200,245,90,0.25);
+    border-radius: 100px; padding: 4px 10px; margin-bottom: 2rem;
+  }
+  .upcoming-pill::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); animation: blink 2s ease-in-out infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.65); }
+  }
+  .upcoming-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; margin-bottom: 1.5rem;
+    background: rgba(255,255,255,0.04); opacity: 0.65;
+  }
+  .upcoming-name {
+    font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em;
+    margin-bottom: 0.5rem; color: rgba(240,237,230,0.65);
+  }
+  .upcoming-tagline {
+    font-size: 14px; color: var(--muted); line-height: 1.6;
+    font-weight: 400; margin-bottom: 1.5rem; opacity: 0.7;
+  }
+  .upcoming-status {
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    color: var(--muted); letter-spacing: 0.08em; opacity: 0.55;
+  }
+
+  /* B2B STRIP */
+  .b2b-section {
+    margin-top: 5rem;
+    border: 1px solid var(--border-med);
+    border-left: 3px solid var(--accent);
+    padding: 3rem;
+    position: relative; overflow: hidden;
+    animation: fadeUp 0.8s 0.55s ease both;
+  }
+  .b2b-section::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(200,245,90,0.025) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .b2b-label {
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    color: var(--accent); letter-spacing: 0.18em; text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .b2b-headline {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    line-height: 1.25; font-weight: 400; letter-spacing: -0.01em;
+    margin-bottom: 2.5rem;
+  }
+  .b2b-headline em { font-style: italic; color: var(--muted); }
+  .b2b-capabilities {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+  @media (max-width: 640px) { .b2b-capabilities { grid-template-columns: 1fr; } }
+  .b2b-cap { display: flex; align-items: flex-start; gap: 12px; }
+  .b2b-cap-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); margin-top: 7px; flex-shrink: 0;
+  }
+  .b2b-cap-text { font-size: 14px; color: var(--muted); line-height: 1.55; }
+  .b2b-cap-text strong { color: rgba(240,237,230,0.8); font-weight: 600; }
+
+  .b2b-cta {
+    margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .b2b-cta-text {
+    font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 500px;
+  }
+  .b2b-cta-text strong { color: rgba(240,237,230,0.75); font-weight: 600; }
+  .b2b-badge {
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); border: 1px solid rgba(200,245,90,0.3);
+    padding: 10px 18px; border-radius: 100px; white-space: nowrap;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .b2b-badge:hover { background: rgba(200,245,90,0.07); }
+
+  /* ABOUT */
+  .about-section {
+    padding: 5rem 0;
+    border-top: 1px solid var(--border);
+    margin-top: 5rem;
+    display: grid; grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    animation: fadeUp 0.8s 0.6s ease both;
+  }
+  @media (max-width: 640px) { .about-section { grid-template-columns: 1fr; gap: 2.5rem; } }
+  .about-label {
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    color: var(--muted); letter-spacing: 0.18em; text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .about-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem; line-height: 1.45;
+    font-weight: 400; letter-spacing: -0.01em;
+  }
+  .about-text em { font-style: italic; color: var(--muted); }
+  .eng-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.75rem; }
+  .eng-tag {
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); border: 1px solid var(--border);
+    padding: 5px 12px; border-radius: 4px;
+  }
+  .about-detail { font-size: 15px; color: var(--muted); line-height: 1.85; }
+  .about-detail p + p { margin-top: 1rem; }
+  .about-detail strong { color: rgba(240,237,230,0.75); font-weight: 600; }
+
+  /* CONTACT */
+  .contact-section {
+    padding: 4rem 0 6rem;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: flex-start;
+    justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.7s ease both;
+  }
+  .contact-cta {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1.15;
+  }
+  .contact-cta em { font-style: italic; color: var(--muted); }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; padding-top: 0.5rem; }
+  .contact-link {
+    font-family: 'DM Mono', monospace; font-size: 13px;
+    color: var(--muted); text-decoration: none;
+    letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px;
+    transition: color 0.2s;
+  }
+  .contact-link::after { content: '↗'; font-size: 11px; opacity: 0.6; }
+  .contact-link:hover { color: var(--text); }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 0; border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  footer p {
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    color: var(--muted); letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <nav>
+    <!-- ✏️ Replace with your name or handle -->
+    <a class="nav-logo" href="#">// Ayse Gungormez</a>
+    <ul class="nav-links">
+      <li><a href="#apps">Apps</a></li>
+      <li><a href="#b2b">B2B</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-eyebrow">Mechanical engineer · developer</div>
+    <h1>I build things<br>that <em>actually</em><br>work.</h1>
+    <!-- ✏️ Tweak this to feel like your own voice -->
+    <p class="hero-sub">
+      <strong>Mechanical engineer</strong> who codes. I understand systems, constraints, and how real businesses operate — so the software I build actually reflects that. Consumer apps, data tools, B2B products. Zero to production, solo.
+    </p>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">4</span>
+        <span class="stat-label">Live products</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">3</span>
+        <span class="stat-label">App Store apps</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">2</span>
+        <span class="stat-label">B2B tools in dev</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">1</span>
+        <span class="stat-label">Engineer behind all of it</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span class="hi">NextStop</span><span>·</span>
+    <span>Metro trivia</span><span>·</span>
+    <span class="hi">KiloWise</span><span>·</span>
+    <span>Weight tracking</span><span>·</span>
+    <span class="hi">Nxy</span><span>·</span>
+    <span>Dream visualizer</span><span>·</span>
+    <span class="hi">Stellara</span><span>·</span>
+    <span>Astrology PWA</span><span>·</span>
+    <span class="hi">Data tools</span><span>·</span>
+    <span>Real estate analytics</span><span>·</span>
+    <span class="hi">Local data</span><span>·</span>
+    <span>Barcelona</span><span>·</span>
+    <span class="hi">NextStop</span><span>·</span>
+    <span>Metro trivia</span><span>·</span>
+    <span class="hi">KiloWise</span><span>·</span>
+    <span>Weight tracking</span><span>·</span>
+    <span class="hi">Nxy</span><span>·</span>
+    <span>Dream visualizer</span><span>·</span>
+    <span class="hi">Stellara</span><span>·</span>
+    <span>Astrology PWA</span><span>·</span>
+    <span class="hi">Data tools</span><span>·</span>
+    <span>Real estate analytics</span><span>·</span>
+    <span class="hi">Local data</span><span>·</span>
+    <span>Barcelona</span><span>·</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- CONSUMER APPS -->
+  <p class="section-label" id="apps">— Consumer apps</p>
+
+  <div class="apps-grid">
+
+    <!-- ✏️ Replace href="#" with your App Store links -->
+    <a class="app-card card-nextstop" href="https://appstoreconnect.apple.com/apps/6757105391/distribution" target="_blank" rel="noopener">
+      <span class="app-arrow">↗</span>
+      <div class="app-number">01</div>
+      <div class="app-icon">🚇</div>
+      <div class="app-name">NextStop</div>
+      <div class="app-tagline">Trivia game about metro stations around the world. Learn cities through their underground.</div>
+      <div class="app-badges">
+        <span class="badge platform">iOS</span>
+        <span class="badge">Trivia</span>
+        <span class="badge">Maps</span>
+      </div>
+    </a>
+
+    <a class="app-card card-kilowise" href="https://appstoreconnect.apple.com/apps/6762360854/distribution/ios/version/deliverable" target="_blank" rel="noopener">
+      <span class="app-arrow">↗</span>
+      <div class="app-number">02</div>
+      <div class="app-icon">⚖️</div>
+      <div class="app-name">KiloWise</div>
+      <div class="app-tagline">Simple, focused weight tracking. No noise, no subscriptions — just your progress.</div>
+      <div class="app-badges">
+        <span class="badge platform">iOS</span>
+        <span class="badge">Health</span>
+        <span class="badge">Minimal</span>
+      </div>
+    </a>
+
+    <a class="app-card card-nxy" href="https://nxy-app.com/" target="_blank" rel="noopener">
+      <span class="app-arrow">↗</span>
+      <div class="app-number">03</div>
+      <div class="app-icon">🌙</div>
+      <div class="app-name">Nxy — Dream Visualizer</div>
+      <div class="app-tagline">Write your dreams. AI turns them into art. Capture the imagery of your subconscious.</div>
+      <div class="app-badges">
+        <span class="badge platform">iOS</span>
+        <span class="badge platform">Web</span>
+        <span class="badge">AI</span>
+        <span class="badge">Creative</span>
+      </div>
+    </a>
+
+    <a class="app-card card-stellra" href="https://stellara-app.com/" target="_blank" rel="noopener">
+      <span class="app-arrow">↗</span>
+      <div class="app-number">04</div>
+      <div class="app-icon">✨</div>
+      <div class="app-name">Stellara</div>
+      <div class="app-tagline">Astrology for the modern age. A progressive web app — no install needed, works everywhere.</div>
+      <div class="app-badges">
+        <span class="badge platform">PWA</span>
+        <span class="badge">Astrology</span>
+        <span class="badge">Cross-platform</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- IN THE PIPELINE -->
+  <p class="section-label" style="padding-top: 3.5rem;">— In the pipeline</p>
+
+  <div class="upcoming-grid">
+
+    <div class="upcoming-card">
+      <div class="upcoming-pill">In progress</div>
+      <div class="upcoming-icon">🏗️</div>
+      <div class="upcoming-name">StackTower</div>
+      <div class="upcoming-tagline">A new app currently in development. Shipping soon.</div>
+      <div class="upcoming-status">// fixing the last bugs</div>
+    </div>
+
+    <div class="upcoming-card">
+      <div class="upcoming-pill">In progress</div>
+      <div class="upcoming-icon">🍺</div>
+      <div class="upcoming-name">CanaDex</div>
+      <div class="upcoming-tagline">A local intelligence tool for Barcelona — bars, venues, and real price data in one place.</div>
+      <div class="upcoming-status">// building the data layer</div>
+    </div>
+
+  </div>
+
+  <!-- B2B STRIP -->
+  <div class="b2b-section" id="b2b">
+    <div class="b2b-label">// B2B & business tools</div>
+    <div class="b2b-headline">I also build tools<br>for <em>serious</em> problems.</div>
+
+    <div class="b2b-capabilities">
+      <div class="b2b-cap">
+        <div class="b2b-cap-dot"></div>
+        <div class="b2b-cap-text"><strong>Data pipelines & analytics</strong> — scraping, cleaning, and structuring raw data into usable business intelligence</div>
+      </div>
+      <div class="b2b-cap">
+        <div class="b2b-cap-dot"></div>
+        <div class="b2b-cap-text"><strong>Prediction & ML layers</strong> — price trend models and market forecasting for real-world domains</div>
+      </div>
+      <div class="b2b-cap">
+        <div class="b2b-cap-dot"></div>
+        <div class="b2b-cap-text"><strong>Product configurators & selectors</strong> — technical tools that match specs to solutions, built for engineering contexts</div>
+      </div>
+      <div class="b2b-cap">
+        <div class="b2b-cap-dot"></div>
+        <div class="b2b-cap-text"><strong>SaaS for niche verticals</strong> — purpose-built platforms for industries where off-the-shelf software falls short</div>
+      </div>
+      <div class="b2b-cap">
+        <div class="b2b-cap-dot"></div>
+        <div class="b2b-cap-text"><strong>Workflow automation</strong> — turning manual, repetitive processes into clean internal tools</div>
+      </div>
+      <div class="b2b-cap">
+        <div class="b2b-cap-dot"></div>
+        <div class="b2b-cap-text"><strong>Local market tools</strong> — data products built around specific cities, industries, or geographies</div>
+      </div>
+    </div>
+
+    <div class="b2b-cta">
+      <p class="b2b-cta-text">
+        Currently working on projects in <strong>real estate analytics</strong> and <strong>local market intelligence</strong>, both based in Barcelona. If you have a business problem that needs a custom software solution, I'm open to conversations.
+      </p>
+      <a href="#contact" class="b2b-badge">Open to consulting ↓</a>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="about-section" id="about">
+    <div>
+      <div class="about-label">— About</div>
+      <div class="about-text">Engineer first.<br><em>Developer</em> by necessity.</div>
+      <div class="eng-tags">
+        <span class="eng-tag">Mechanical Eng.</span>
+        <span class="eng-tag">iOS / Swift</span>
+        <span class="eng-tag">Web</span>
+        <span class="eng-tag">Data / ML</span>
+        <span class="eng-tag">Barcelona</span>
+      </div>
+    </div>
+    <div class="about-detail">
+      <!-- ✏️ Make this yours — keep the structure though -->
+      <p>I have a background in <strong>mechanical engineering</strong>, which means I think in systems, constraints, and real-world trade-offs before I write a single line of code. That perspective makes a real difference when building software that has to work outside a browser.</p>
+      <p>I build everything independently — design, development, deployment. Four consumer apps live on the App Store and web. Two B2B products currently in development. All self-funded, all solo.</p>
+      <p>Based in <strong>Barcelona</strong>. Available for consulting on technical software projects — especially where engineering domain knowledge matters.</p>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact-section" id="contact">
+    <div class="contact-cta">Let's build<br>something <em>that matters.</em></div>
+    <div class="contact-links">
+      <!-- ✏️ Replace with your actual details -->
+      <a href="mailto:aysegungormez2704.com" class="contact-link">aysegungormez2704@gmail.com</a>
+      
+      <a href="https://github.com/aysegun" target="_blank" rel="noopener" class="contact-link">github</a>
+      
+    </div>
+  </div>
+
+  <footer>
+    <!-- ✏️ Replace with your name -->
+    <p>© 2026 — AYSE GUNGORMEZ</p>
+    <p>Engineer · Developer · Barcelona</p>
+  </footer>
+
+</div>
+</body>
+</html>
